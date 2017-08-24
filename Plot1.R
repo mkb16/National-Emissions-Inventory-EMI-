@@ -1,0 +1,10 @@
+library(calibrate)
+unzip("exdata%2Fdata%2FNEI_data.zip")
+nei <- readRDS("summarySCC_PM25.rds")
+scc <- readRDS("Source_Classification_Code.rds")
+total <- tapply(nei$Emission , nei$year , sum)
+png("plot1.png", width = 480, height = 480, units = "px", bg = "white")
+plot(names(total) , total , main = "Total Emissions(Tons) in US between 1999 to 2008" , xlab = "Year", ylab = "Total PM2.5 emissions (Tons)" ,type = "l" , col = "red" , lty = 2 , font.axis = 2)
+textxy(names(total) , total , total)
+dev.off()
+ 

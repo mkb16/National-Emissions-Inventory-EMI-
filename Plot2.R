@@ -1,0 +1,11 @@
+library(calibrate)
+unzip("exdata%2Fdata%2FNEI_data.zip")
+nei <- readRDS("summarySCC_PM25.rds")
+scc <- readRDS("Source_Classification_Code.rds")
+nei1 <- subset(nei , fips == "24510")
+total <- tapply(nei1$Emission , nei1$year , sum)
+png("plot2.png", width = 480, height = 480, units = "px", bg = "white")
+plot(names(total) , total , main = "Total Emissions (tons) in Baltimore between 1999 to 2008" , xlab = "Year", ylab = "Total PM2.5 emission (Tons)" ,type = "l" ,lty = 2 , font.axis = 2 , col = "blue" )
+textxy(names(total) , total , total)
+dev.off()
+ 
